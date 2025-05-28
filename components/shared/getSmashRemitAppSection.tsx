@@ -25,7 +25,7 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
         }}
       >
         <CloseButton onClose={onClose} />
-        <div className="flex gap-50 p-20 md:flex-row">
+        <div className="flex gap-50 p-5 md:flex-row lg:p-20">
           {/* Left Column (Text and Badges) */}
           <div className="mb-6 w-full md:mb-5 md:w-[50%]">
             <motion.div className="mb-7 w-fit rounded-sm bg-black/80 p-2">
@@ -39,7 +39,7 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
             </motion.div>
 
             <motion.h1
-              className="mb-4 text-3xl font-bold text-[#000029] md:text-4xl"
+              className="mb-4 text-2xl font-bold text-[#000029] md:text-4xl"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -47,7 +47,7 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
               Get the SmashRemit App
             </motion.h1>
             <motion.p
-              className="mt-5 mb-6 w-full text-base text-[#000029] md:text-lg"
+              className="mt-5 mb-6 w-[75%] p-2 text-sm text-[#000029] md:text-lg lg:w-full lg:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -63,7 +63,7 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <Link href="https://play.google.com/store/apps" passHref>
-                <div className="flex h-[43px] w-[130px] items-center gap-1 rounded-md bg-transparent p-2 text-black ring-1 ring-black">
+                <div className="xs:mx-[60px] flex h-[43px] w-[130px] items-center justify-center gap-1 rounded-md bg-transparent p-2 text-black ring-1 ring-black">
                   <PlayStoreIcon className="h-6 w-6" />
                   <div className="flex flex-col leading-none">
                     <span className="text-xs">Get it on</span>
@@ -72,7 +72,7 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
                 </div>
               </Link>
               <Link href="https://www.apple.com/app-store/" passHref>
-                <div className="flex h-[43px] w-[130px] items-center gap-1 rounded-md bg-transparent p-2 text-black ring-1 ring-black">
+                <div className="xs:mx-[60px] flex h-[43px] w-[130px] items-center gap-1 rounded-md bg-transparent p-2 text-black ring-1 ring-black">
                   <AppleIcon className="h-5 w-5" />
                   <div className="flex flex-col leading-none">
                     <span className="text-[10px]">Download on the</span>

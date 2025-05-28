@@ -54,9 +54,10 @@ export const OffersComponent = (props: Props) => {
       <div className="relative h-[523px] w-full rounded-[12px]">
         <Image
           src={props.imgUrl}
-          fill
+          width={400}
+          height={400}
           alt={props.title}
-          className="rounded-[12px] object-cover"
+          className="h-[100%] w-[100%] rounded-[12px] object-cover sm:h-[90%] sm:w-[90%] md:h-[80%] md:w-[80%] lg:h-[100%] lg:w-[100%]"
         />
       </div>
     </div>

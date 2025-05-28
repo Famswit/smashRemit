@@ -156,7 +156,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <motion.div
-            className="absolute top-16 left-0 w-full bg-[#0d0d2b] px-4 py-4 md:hidden"
+            className="absolute top-16 left-0 flex w-full flex-col items-center justify-center bg-[#0d0d2b] px-4 py-8 md:hidden"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
@@ -205,7 +205,7 @@ const Navbar = () => {
       {/* Modal for GetSmashRemitAppSection */}
       {isModalOpen && (
         <motion.div
-          className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black"
+          className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black px-4"
           initial="hidden"
           animate="visible"
           exit="hidden"

@@ -42,7 +42,7 @@ export default function Home() {
                 key={offer.title}
                 imgUrl={offer.bgImage}
                 title={offer.title}
-                titleClassName="text-5xl font-bold w-[500px]"
+                titleClassName="text-3xl md:text-4xl lg:text-5xl font-bold w-[500px]"
                 description={offer.description}
                 descriptionClassName="text-lg font-normal w-[400px] mt-3"
                 className={`flex w-[full] flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-6 rounded-lg transition-all md:gap-10`}
@@ -169,8 +169,10 @@ export default function Home() {
       </MaxWidthContainer>
       <MaxWidthContainer>
         <div className="grid h-auto grid-cols-1 gap-3 rounded-[32px] bg-[#0991FF] md:h-[541px] md:grid-cols-12 md:gap-10">
-          <div className="col-span-7 flex flex-col justify-center px-6 px-20 py-6 md:py-0">
-            <h2 className="text-5xl font-bold text-white">About SmashRemit</h2>
+          <div className="xs:px-10 col-span-7 flex flex-col justify-center px-6 py-6 md:py-0 lg:px-20">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              About SmashRemit
+            </h2>
             <p className="mt-4 text-lg font-normal text-white">
               SmashRemit is a cutting-edge fintech platform designed to simplify
               financial transactions and empower users with seamless, secure,
@@ -180,7 +182,7 @@ export default function Home() {
               digital ecosystem.
             </p>
             <motion.div
-              className="mt-10 flex flex-col gap-3 md:flex-row"
+              className="xs:flex-row mt-10 flex flex-col gap-3 sm:flex-row md:flex-row lg:flex-row"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -205,12 +207,13 @@ export default function Home() {
               </Link>
             </motion.div>
           </div>
-          <div className="relative col-span-5 w-full rounded-r-[12px] md:h-full">
+          <div className="sm:h-{60%} relative col-span-5 w-full rounded-r-[12px] sm:mx-auto sm:w-[60%] md:h-full md:w-full">
             <Image
               src="/iPhone15.png"
-              fill
+              width={420}
+              height={867.75}
               alt="SmashRemit app"
-              className="mt-15 rounded-r-[12px] object-cover p-15"
+              className="h-auto w-full rounded-r-[12px] object-contain p-4 lg:mt-3"
             />
           </div>
         </div>
