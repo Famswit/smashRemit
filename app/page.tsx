@@ -1,0 +1,220 @@
+"use client";
+
+import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { motion } from "framer-motion";
+import { ArrowRight, Star } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+
+import { HeroSection } from "@/components/shared/hero";
+import MaxWidthContainer from "@/components/shared/max-width-container";
+import { OffersComponent } from "@/components/shared/offers-comp";
+import { Avatar } from "@/components/ui/avatar";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import SectionHeader from "@/components/widgets/section-header";
+import { testimonials, whatWeOffer } from "@/config";
+import AppleIcon from "@/icons/apple";
+import PlayStoreIcon from "@/icons/left-left-icon";
+
+export default function Home() {
+  return (
+    <>
+      <HeroSection />
+      <MaxWidthContainer>
+        <div className="space-y-10 px-4 md:px-0">
+          <SectionHeader
+            title="What we offer to our customers"
+            titleClassName="!text-center w-full text-[#0991FF] font-bold text-3xl"
+          />
+          <div className="flex flex-col gap-10">
+            {whatWeOffer.map((offer, index) => (
+              <OffersComponent
+                index={index}
+                key={offer.title}
+                imgUrl={offer.bgImage}
+                title={offer.title}
+                titleClassName="text-5xl font-bold w-[500px]"
+                description={offer.description}
+                descriptionClassName="text-lg font-normal w-[400px] mt-3"
+                className={`flex w-[full] flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-6 rounded-lg transition-all md:gap-10`}
+                button={
+                  <Button
+                    variant={"outline"}
+                    className="flex items-center gap-2 rounded-full border-[#FF7E32] text-[#FF7E32] transition-colors hover:bg-[#FF7E32] hover:text-white"
+                  >
+                    {offer.btnText}
+                    <ArrowRight className="h-5 w-5" />
+                  </Button>
+                }
+              />
+            ))}
+          </div>
+        </div>
+      </MaxWidthContainer>
+      <MaxWidthContainer>
+        <div className="grid grid-cols-1 overflow-hidden rounded-[32px] bg-white md:h-[459px] md:grid-cols-2">
+          {/* Left Section */}
+          <div className="flex flex-col justify-center bg-[#FF7F2A] px-6 py-10 md:px-16">
+            <SectionHeader
+              title="Grow Your Wealth Smartly"
+              titleClassName="text-white text-3xl md:text-4xl font-bold leading-tight"
+              description="Safe, flexible investments that fit your lifestyle. Earn up to 3.5% ROI with Full Transparency and Security"
+              descriptionClassName="text-white text-base md:text-lg mt-4"
+              button={
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="mt-6 w-max rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-[#007AFF] transition-colors duration-300 hover:bg-gray-100"
+                >
+                  Invest Now
+                </motion.button>
+              }
+            />
+          </div>
+
+          {/* Right Image Section */}
+          <motion.div
+            className="relative h-[300px] w-full overflow-hidden md:h-full"
+            whileHover={{ scale: 1.03 }}
+            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+          >
+            <Image
+              src="/growWealth.png"
+              alt="grow your wealth"
+              fill
+              className="object-cover"
+            />
+          </motion.div>
+        </div>
+      </MaxWidthContainer>
+      <MaxWidthContainer>
+        <div>
+          <div className="relative mx-auto w-full max-w-[1200px]">
+            {/* Section Header */}
+            <SectionHeader
+              title="What Our Users Are Saying"
+              description="Real stories from real people using SmashRemit around the world"
+              titleClassName="text-center w-full text-[#0991FF] font-bold text-3xl"
+              descriptionClassName="text-center w-full mt-2 mb-20"
+            />
+
+            {/* Carousel */}
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="mt-8 w-full"
+              orientation="horizontal"
+            >
+              <CarouselContent className="-ml-4 flex">
+                {testimonials.map((testimonial, index) => (
+                  <CarouselItem
+                    key={index}
+                    className="basis-full px-4 md:basis-1/3"
+                  >
+                    <Card className="h-[222px] w-full rounded-xl p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                      <CardHeader className="flex items-center gap-3 pb-2">
+                        <Avatar className="h-10 w-10 transition-transform duration-300 hover:scale-110">
+                          <AvatarImage src={testimonial.image} />
+                          <AvatarFallback>{testimonial.name[0]}</AvatarFallback>
+                        </Avatar>
+                        <div className="text-sm">
+                          <h2 className="font-semibold">{testimonial.name}</h2>
+                          <p className="flex items-center gap-1 text-xs text-gray-500">
+                            <span className="text-base">
+                              {testimonial.flagEmoji}
+                            </span>
+                            {testimonial.country}
+                          </p>
+                        </div>
+                      </CardHeader>
+
+                      <CardContent className="pt-1 text-sm text-gray-700">
+                        <p className="line-clamp-3">
+                          \`&quot;`{testimonial.feedback}\`&quot;`
+                        </p>
+                        <Badge className="mt-3 bg-blue-100 text-blue-600">
+                          {testimonial.category}
+                        </Badge>
+                        <div className="mt-2 flex gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star
+                              key={i}
+                              className="h-3.5 w-3.5 fill-yellow-400 text-yellow-400"
+                            />
+                          ))}
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+
+              {/* Navigation */}
+              <CarouselPrevious className="absolute top-1/2 left-0 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition hover:bg-gray-100" />
+              <CarouselNext className="absolute top-1/2 right-0 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-md transition hover:bg-gray-100" />
+            </Carousel>
+          </div>
+        </div>
+      </MaxWidthContainer>
+      <MaxWidthContainer>
+        <div className="grid h-auto grid-cols-1 gap-3 rounded-[32px] bg-[#0991FF] md:h-[541px] md:grid-cols-12 md:gap-10">
+          <div className="col-span-7 flex flex-col justify-center px-6 px-20 py-6 md:py-0">
+            <h2 className="text-5xl font-bold text-white">About SmashRemit</h2>
+            <p className="mt-4 text-lg font-normal text-white">
+              SmashRemit is a cutting-edge fintech platform designed to simplify
+              financial transactions and empower users with seamless, secure,
+              and efficient money management solutions. <br /> It offers a
+              comprehensive range of services, including bill payments, money
+              transfers, investments, and savings, all within a user-friendly
+              digital ecosystem.
+            </p>
+            <motion.div
+              className="mt-10 flex flex-col gap-3 md:flex-row"
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              <Link href="https://play.google.com/store/apps" passHref>
+                <div className="flex h-[43px] w-[130px] items-center gap-1 rounded-md bg-white p-2 text-black">
+                  <PlayStoreIcon className="h-6 w-6" />
+                  <div className="flex flex-col leading-none">
+                    <span className="text-xs">Get it on</span>
+                    <p className="text-sm font-bold">Google Play</p>
+                  </div>
+                </div>
+              </Link>
+              <Link href="https://www.apple.com/app-store/" passHref>
+                <div className="flex h-[43px] w-[130px] items-center gap-1 rounded-md bg-white p-2 text-black">
+                  <AppleIcon className="h-5 w-5" />
+                  <div className="flex flex-col leading-none">
+                    <span className="text-[10px]">Download on the</span>
+                    <p className="text-xs font-bold">App Store</p>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          </div>
+          <div className="relative col-span-5 w-full rounded-r-[12px] md:h-full">
+            <Image
+              src="/iPhone15.png"
+              fill
+              alt="SmashRemit app"
+              className="mt-15 rounded-r-[12px] object-cover p-15"
+            />
+          </div>
+        </div>
+      </MaxWidthContainer>
+    </>
+  );
+}
