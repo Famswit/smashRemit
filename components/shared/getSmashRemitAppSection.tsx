@@ -47,7 +47,7 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
               Get the SmashRemit App
             </motion.h1>
             <motion.p
-              className="mt-5 mb-6 w-[75%] p-2 text-sm text-[#000029] md:text-lg lg:w-full lg:text-lg"
+              className="mt-5 mb-6 w-[60%] p-2 text-sm text-[#000029] md:text-lg lg:w-full lg:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}

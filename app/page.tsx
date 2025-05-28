@@ -42,9 +42,9 @@ export default function Home() {
                 key={offer.title}
                 imgUrl={offer.bgImage}
                 title={offer.title}
-                titleClassName="text-3xl md:text-4xl lg:text-5xl font-bold w-[500px]"
+                titleClassName="text-2xl md:text-4xl lg:text-5xl font-bold w-[500px]"
                 description={offer.description}
-                descriptionClassName="text-lg font-normal w-[400px] mt-3"
+                descriptionClassName="text-lg font-normal w-[300px] mt-3"
                 className={`flex w-[full] flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-6 rounded-lg transition-all md:gap-10`}
                 button={
                   <Button
