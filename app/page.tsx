@@ -115,14 +115,14 @@ export default function Home() {
                 align: "start",
                 loop: true,
               }}
-              className="mt-8 w-full"
+              className="mt-8 w-full px-8 sm:px-12 md:px-16 lg:px-20"
               orientation="horizontal"
             >
               <CarouselContent className="-ml-4 flex">
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem
                     key={index}
-                    className="flex basis-full justify-center sm:basis-full md:basis-1/2 lg:basis-1/3"
+                    className="flex basis-full justify-center sm:basis-[90%] md:basis-1/2 lg:basis-1/3"
                   >
                     <Card className="h-[227px] w-full rounded-xl p-2 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                       <CardHeader className="flex items-center gap-3 pb-2">
@@ -142,7 +142,6 @@ export default function Home() {
                       </CardHeader>
 
                       <CardContent className="pt-1 text-sm text-gray-700">
-                        {/* Fix 2: Escape unescaped entities */}
                         <p className="line-clamp-3">
                           &quot;{testimonial.feedback}&quot;
                         </p>
@@ -173,7 +172,7 @@ export default function Home() {
       <MaxWidthContainer>
         <div className="grid h-auto grid-cols-1 gap-3 rounded-[32px] bg-[#0991FF] md:h-[541px] md:grid-cols-12">
           {/* Image Section */}
-          <div className="xl:col-span-4.5 relative order-1 col-span-5 mx-auto flex w-[60%] items-end sm:mx-auto sm:w-[60%] md:order-2 md:h-full md:w-full lg:col-span-5 lg:pr-10">
+          <div className="xl:col-span-4.5 xs:py-10 relative order-1 col-span-5 mx-auto flex w-[60%] items-end py-10 sm:mx-auto sm:w-[60%] sm:py-8 md:order-2 md:h-full md:w-full md:py-0 lg:col-span-5 lg:py-12.5 lg:pr-10">
             <Image
               src="/iPhone15.png"
               width={420}
@@ -185,11 +184,11 @@ export default function Home() {
           </div>
 
           {/* Text Section */}
-          <div className="xs:px-10 order-2 col-span-7 flex flex-col justify-center px-6 py-6 md:order-1 md:mt-20 lg:col-span-7 lg:mt-30 lg:w-[100%] lg:px-20 xl:col-span-7">
+          <div className="xs:px-10 xs:py-16 order-2 col-span-7 flex flex-col justify-center px-6 py-16 md:order-1 md:mt-20 lg:col-span-7 lg:mt-30 lg:w-[100%] lg:px-20 xl:col-span-7">
             <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-3xl lg:text-5xl xl:text-5xl">
               About SmashRemit
             </h2>
-            <p className="mt-4 text-lg font-normal text-white md:text-sm xl:text-lg">
+            <p className="mt-4 pb-4 text-lg font-normal text-white md:pb-0 md:text-sm xl:text-lg">
               SmashRemit is a cutting-edge fintech platform designed to simplify
               financial transactions and empower users with seamless, secure,
               and efficient money management solutions. <br /> It offers a
@@ -198,7 +197,7 @@ export default function Home() {
               digital ecosystem.
             </p>
             <motion.div
-              className="mt-4 flex flex-row justify-start gap-3 sm:mt-6 md:mt-10 md:justify-start"
+              className="xs:py-5 mt-4 flex flex-row justify-start gap-3 pt-4 pb-4 sm:mt-6 md:mt-10 md:justify-start md:pt-0 md:pb-0"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}

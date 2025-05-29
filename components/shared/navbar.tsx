@@ -225,7 +225,7 @@ const Navbar = () => {
                 className="mt-6 text-center"
               >
                 <Button
-                  className="w-[300px] rounded-full bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
+                  className="w-[300px] rounded-full bg-[#000029] px-6 py-2 text-white hover:bg-blue-700"
                   onClick={toggleModal}
                 >
                   Get Started
