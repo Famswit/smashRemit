@@ -32,22 +32,20 @@ const Navbar = () => {
     setIsModalOpen(false);
   };
 
-  // Define variants for the underline animation
-  const underlineVariants = {
-    hidden: { scaleX: 0, originX: 0 },
-    visible: { scaleX: 1, originX: 0 },
-  };
-
-  // Define variants for the button animation
   const buttonVariants = {
     rest: { scale: 1 },
     hover: { scale: 1.05 },
   };
 
-  // Define variants for modal animation
   const modalVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
+  };
+
+  const mobileMenuVariants = {
+    hidden: { translateX: "100%", opacity: 0, scale: 0.9 },
+    visible: { translateX: "0%", opacity: 1, scale: 1 },
+    exit: { translateX: "100%", opacity: 0, scale: 0.9 },
   };
 
   return (
@@ -59,7 +57,6 @@ const Navbar = () => {
         transition={{ duration: 0.5 }}
       >
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 md:h-20">
-          {/* Logo and Brand Name */}
           <div className="flex items-center">
             <Image
               src="/SmashRemitLogo.png"
@@ -76,18 +73,28 @@ const Navbar = () => {
               <motion.div
                 key={link.label}
                 className="relative"
-                whileHover="visible"
-                initial="hidden"
+                initial="rest"
+                whileHover="hover"
+                animate="rest"
               >
-                <Link
-                  href={link.href}
-                  className="text-base font-medium text-white transition-colors hover:text-blue-400"
-                >
-                  {link.label}
+                <Link href={link.href} className="block">
+                  <motion.span
+                    className="text-base font-medium text-white"
+                    variants={{
+                      rest: { color: "#ffffff" },
+                      hover: { color: "#60a5fa" },
+                    }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {link.label}
+                  </motion.span>
                 </Link>
                 <motion.div
-                  className="absolute bottom-0 left-0 h-[2px] w-full bg-blue-400"
-                  variants={underlineVariants}
+                  className="absolute -bottom-1 left-0 h-0.5 bg-blue-400"
+                  variants={{
+                    rest: { width: 0 },
+                    hover: { width: "100%" },
+                  }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                 />
               </motion.div>
@@ -152,46 +159,73 @@ const Navbar = () => {
             </button>
           </div>
         </div>
+      </motion.header>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="fixed inset-0 z-40 md:hidden">
           <motion.div
-            className="absolute top-16 left-0 flex w-full flex-col items-center justify-center bg-[#0d0d2b] px-4 py-8 md:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            className="absolute inset-0 bg-transparent"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
+            onClick={toggleMobileMenu}
+          />
+
+          <motion.div
+            className="absolute top-0 right-0 h-full w-[350px] bg-white px-6 py-16 shadow-lg"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={mobileMenuVariants}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
           >
-            <nav className="flex flex-col gap-4">
+            <nav className="flex flex-col items-start gap-10 pt-12">
               {navLinks.map((link) => (
                 <motion.div
                   key={link.label}
                   className="relative"
-                  whileHover="visible"
-                  initial="hidden"
+                  initial="rest"
+                  whileHover="hover"
+                  animate="rest"
                 >
                   <Link
                     href={link.href}
-                    className="text-base font-medium text-white transition-colors hover:text-blue-400"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block"
+                    onClick={toggleMobileMenu}
                   >
-                    {link.label}
+                    <motion.span
+                      className="text-base font-medium text-black"
+                      variants={{
+                        rest: { color: "#000000" },
+                        hover: { color: "#60a5fa" },
+                      }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      {link.label}
+                    </motion.span>
                   </Link>
                   <motion.div
-                    className="absolute bottom-0 left-0 h-[2px] w-full bg-blue-400"
-                    variants={underlineVariants}
+                    className="absolute -bottom-1 left-0 h-0.5 bg-blue-400"
+                    variants={{
+                      rest: { width: 0 },
+                      hover: { width: "100%" },
+                    }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
                   />
                 </motion.div>
               ))}
+
               <motion.div
                 variants={buttonVariants}
                 initial="rest"
                 whileHover="hover"
                 transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="mt-6 text-center"
               >
                 <Button
-                  className="rounded-full bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
+                  className="w-[300px] rounded-full bg-blue-600 px-6 py-2 text-white hover:bg-blue-700"
                   onClick={toggleModal}
                 >
                   Get Started
@@ -199,10 +233,10 @@ const Navbar = () => {
               </motion.div>
             </nav>
           </motion.div>
-        )}
-      </motion.header>
+        </div>
+      )}
 
-      {/* Modal for GetSmashRemitAppSection */}
+      {/* Modal */}
       {isModalOpen && (
         <motion.div
           className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black px-4"

@@ -5,6 +5,7 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 import SectionHeader from "../widgets/section-header";
+
 type Props = {
   title: string;
   description?: string;
@@ -23,17 +24,22 @@ type Props = {
   imgUrl: string;
   index: number;
 };
-export const OffersComponent = (props: Props) => {
-  const rowClass = props.index % 2 === 1 ? "flex-row-reverse" : "";
 
+export const OffersComponent = (props: Props) => {
   return (
-    <div
-      className={cn(
-        "flex items-center justify-between gap-6",
-        rowClass,
-        props.className
-      )}
-    >
+    <div className={cn("flex w-full items-center gap-6", props.className)}>
+      {/* Image Section  */}
+      <div className="relative flex h-[250px] w-full items-center justify-center overflow-hidden rounded-[12px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px]">
+        <Image
+          src={props.imgUrl}
+          alt={props.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+
+      {/* Text Section */}
       <div className="w-full">
         <SectionHeader
           containerClassName={props.containerClassName}
@@ -49,15 +55,6 @@ export const OffersComponent = (props: Props) => {
           subtitle={props.subtitle}
           descriptionClassName={props.descriptionClassName}
           buttonClassName={props.buttonClassName}
-        />
-      </div>
-      <div className="relative h-[523px] w-full rounded-[12px]">
-        <Image
-          src={props.imgUrl}
-          width={400}
-          height={400}
-          alt={props.title}
-          className="h-[100%] w-[100%] rounded-[12px] object-cover sm:h-[90%] sm:w-[90%] md:h-[80%] md:w-[80%] lg:h-[100%] lg:w-[100%]"
         />
       </div>
     </div>

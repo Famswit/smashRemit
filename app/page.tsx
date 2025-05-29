@@ -12,7 +12,7 @@ import { OffersComponent } from "@/components/shared/offers-comp";
 import { Avatar } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardHeader, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -20,6 +20,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import ScrollToTopButton from "@/components/ui/ScrollToTop";
 import SectionHeader from "@/components/widgets/section-header";
 import { testimonials, whatWeOffer } from "@/config";
 import AppleIcon from "@/icons/apple";
@@ -42,10 +43,10 @@ export default function Home() {
                 key={offer.title}
                 imgUrl={offer.bgImage}
                 title={offer.title}
-                titleClassName="text-2xl md:text-4xl lg:text-5xl font-bold w-[500px]"
+                titleClassName="text-2xl md:text-4xl lg:text-5xl font-bold w-full max-w-[90%] md:max-w-[500px]"
                 description={offer.description}
-                descriptionClassName="text-lg font-normal w-[300px] mt-3"
-                className={`flex w-[full] flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-6 rounded-lg transition-all md:gap-10`}
+                descriptionClassName="text-lg font-normal w-full max-w-[90%] md:max-w-[300px] mt-3"
+                className={`flex w-full flex-col md:flex-row ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} items-center gap-6 rounded-lg transition-all md:gap-10`}
                 button={
                   <Button
                     variant={"outline"}
@@ -63,7 +64,7 @@ export default function Home() {
       <MaxWidthContainer>
         <div className="grid grid-cols-1 overflow-hidden rounded-[32px] bg-white md:h-[459px] md:grid-cols-2">
           {/* Left Section */}
-          <div className="flex flex-col justify-center bg-[#FF7F2A] px-6 py-10 md:px-16">
+          <div className="order-2 flex flex-col justify-center bg-[#FF7F2A] px-6 py-10 md:order-1 md:px-16">
             <SectionHeader
               title="Grow Your Wealth Smartly"
               titleClassName="text-white text-3xl md:text-4xl font-bold leading-tight"
@@ -83,7 +84,7 @@ export default function Home() {
 
           {/* Right Image Section */}
           <motion.div
-            className="relative h-[300px] w-full overflow-hidden md:h-full"
+            className="relative order-1 h-[300px] w-full overflow-hidden md:order-2 md:h-full"
             whileHover={{ scale: 1.03 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
@@ -92,19 +93,20 @@ export default function Home() {
               alt="grow your wealth"
               fill
               className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </motion.div>
         </div>
       </MaxWidthContainer>
       <MaxWidthContainer>
         <div>
-          <div className="relative mx-auto w-full max-w-[1200px]">
+          <div className="relative mx-auto w-full max-w-full md:max-w-[1200px]">
             {/* Section Header */}
             <SectionHeader
               title="What Our Users Are Saying"
               description="Real stories from real people using SmashRemit around the world"
               titleClassName="text-center w-full text-[#0991FF] font-bold text-3xl"
-              descriptionClassName="text-center w-full mt-2 mb-20"
+              descriptionClassName="text-center w-full mt-2 mb-10"
             />
 
             {/* Carousel */}
@@ -120,9 +122,9 @@ export default function Home() {
                 {testimonials.map((testimonial, index) => (
                   <CarouselItem
                     key={index}
-                    className="basis-full px-4 md:basis-1/3"
+                    className="flex basis-full justify-center sm:basis-full md:basis-1/2 lg:basis-1/3"
                   >
-                    <Card className="h-[222px] w-full rounded-xl p-4 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
+                    <Card className="h-[227px] w-full rounded-xl p-2 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg">
                       <CardHeader className="flex items-center gap-3 pb-2">
                         <Avatar className="h-10 w-10 transition-transform duration-300 hover:scale-110">
                           <AvatarImage src={testimonial.image} />
@@ -140,8 +142,9 @@ export default function Home() {
                       </CardHeader>
 
                       <CardContent className="pt-1 text-sm text-gray-700">
+                        {/* Fix 2: Escape unescaped entities */}
                         <p className="line-clamp-3">
-                          \`&quot;`{testimonial.feedback}\`&quot;`
+                          &quot;{testimonial.feedback}&quot;
                         </p>
                         <Badge className="mt-3 bg-blue-100 text-blue-600">
                           {testimonial.category}
@@ -168,12 +171,25 @@ export default function Home() {
         </div>
       </MaxWidthContainer>
       <MaxWidthContainer>
-        <div className="grid h-auto grid-cols-1 gap-3 rounded-[32px] bg-[#0991FF] md:h-[541px] md:grid-cols-12 md:gap-10">
-          <div className="xs:px-10 col-span-7 flex flex-col justify-center px-6 py-6 md:py-0 lg:px-20">
-            <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+        <div className="grid h-auto grid-cols-1 gap-3 rounded-[32px] bg-[#0991FF] md:h-[541px] md:grid-cols-12">
+          {/* Image Section */}
+          <div className="xl:col-span-4.5 relative order-1 col-span-5 mx-auto flex w-[60%] items-end sm:mx-auto sm:w-[60%] md:order-2 md:h-full md:w-full lg:col-span-5 lg:pr-10">
+            <Image
+              src="/iPhone15.png"
+              width={420}
+              height={867.75}
+              alt="SmashRemit app"
+              className="w-full object-contain p-4 pb-0 md:pb-0"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
+            />
+          </div>
+
+          {/* Text Section */}
+          <div className="xs:px-10 order-2 col-span-7 flex flex-col justify-center px-6 py-6 md:order-1 md:mt-20 lg:col-span-7 lg:mt-30 lg:w-[100%] lg:px-20 xl:col-span-7">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-3xl lg:text-5xl xl:text-5xl">
               About SmashRemit
             </h2>
-            <p className="mt-4 text-lg font-normal text-white">
+            <p className="mt-4 text-lg font-normal text-white md:text-sm xl:text-lg">
               SmashRemit is a cutting-edge fintech platform designed to simplify
               financial transactions and empower users with seamless, secure,
               and efficient money management solutions. <br /> It offers a
@@ -182,7 +198,7 @@ export default function Home() {
               digital ecosystem.
             </p>
             <motion.div
-              className="xs:flex-row mt-10 flex flex-col gap-3 sm:flex-row md:flex-row lg:flex-row"
+              className="mt-4 flex flex-row justify-start gap-3 sm:mt-6 md:mt-10 md:justify-start"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
@@ -201,23 +217,15 @@ export default function Home() {
                   <AppleIcon className="h-5 w-5" />
                   <div className="flex flex-col leading-none">
                     <span className="text-[10px]">Download on the</span>
-                    <p className="text-xs font-bold">App Store</p>
+                    <p className="text-sm font-bold">App Store</p>
                   </div>
                 </div>
               </Link>
             </motion.div>
           </div>
-          <div className="sm:h-{60%} relative col-span-5 w-full rounded-r-[12px] sm:mx-auto sm:w-[60%] md:h-full md:w-full">
-            <Image
-              src="/iPhone15.png"
-              width={420}
-              height={867.75}
-              alt="SmashRemit app"
-              className="h-auto w-full rounded-r-[12px] object-contain p-4 lg:mt-3"
-            />
-          </div>
         </div>
       </MaxWidthContainer>
+      <ScrollToTopButton />
     </>
   );
 }

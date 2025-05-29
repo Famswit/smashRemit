@@ -12,34 +12,37 @@ import CloseButton from "../ui/closeButton";
 const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
   return (
     <motion.div
-      className="relative h-[500px] max-w-[70%] overflow-hidden rounded-lg shadow-lg"
+      className="relative mx-auto w-full max-w-[95%] overflow-hidden rounded-lg shadow-lg sm:max-w-[70%] md:max-w-[90%] lg:max-w-[80%]"
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: 50, opacity: 0 }}
       transition={{ duration: 0.3 }}
     >
       <div
-        className="h-[500px] w-[1041px] rounded-lg"
+        className="w-full rounded-lg py-5 sm:py-10"
         style={{
           background: "linear-gradient(185deg, #CEE6FE 30%, #31BAB0 100%)",
         }}
       >
-        <CloseButton onClose={onClose} />
-        <div className="flex gap-50 p-5 md:flex-row lg:p-20">
+        <div className="absolute top-4 right-4 z-20">
+          <CloseButton onClose={onClose} />
+        </div>
+
+        <div className="flex flex-col gap-8 px-4 sm:px-6 md:px-8 lg:flex-row lg:items-center lg:px-10">
           {/* Left Column (Text and Badges) */}
-          <div className="mb-6 w-full md:mb-5 md:w-[50%]">
-            <motion.div className="mb-7 w-fit rounded-sm bg-black/80 p-2">
+          <div className="w-full md:w-full lg:w-1/2">
+            <motion.div className="w-fit rounded-sm bg-black/80 p-2">
               <Image
                 src="/SmashRemitLogo.png"
                 alt="SmashRemit Logo"
                 width={100}
                 height={20}
-                className=""
+                className="h-auto w-[80px] sm:w-[100px]"
               />
             </motion.div>
 
             <motion.h1
-              className="mb-4 text-2xl font-bold text-[#000029] md:text-4xl"
+              className="mt-6 mb-4 text-xl font-bold text-[#000029] sm:text-2xl md:text-3xl lg:text-4xl"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -47,7 +50,7 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
               Get the SmashRemit App
             </motion.h1>
             <motion.p
-              className="mt-5 mb-6 w-[60%] p-2 text-sm text-[#000029] md:text-lg lg:w-full lg:text-lg"
+              className="mt-2 mb-6 w-full px-2 text-xs text-[#000029] sm:px-0 sm:text-sm md:text-base lg:text-lg"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -57,13 +60,13 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
               from one easy-to-use platform.
             </motion.p>
             <motion.div
-              className="mt-10 flex flex-col gap-3 md:flex-row"
+              className="mt-6 flex flex-row flex-wrap gap-3"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <Link href="https://play.google.com/store/apps" passHref>
-                <div className="xs:mx-[60px] flex h-[43px] w-[130px] items-center justify-center gap-1 rounded-md bg-transparent p-2 text-black ring-1 ring-black">
+                <div className="flex h-[43px] w-[130px] items-center justify-center gap-1 rounded-md bg-transparent p-2 text-black ring-1 ring-black">
                   <PlayStoreIcon className="h-6 w-6" />
                   <div className="flex flex-col leading-none">
                     <span className="text-xs">Get it on</span>
@@ -72,7 +75,7 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
                 </div>
               </Link>
               <Link href="https://www.apple.com/app-store/" passHref>
-                <div className="xs:mx-[60px] flex h-[43px] w-[130px] items-center gap-1 rounded-md bg-transparent p-2 text-black ring-1 ring-black">
+                <div className="flex h-[43px] w-[130px] items-center gap-1 rounded-md bg-transparent p-2 text-black ring-1 ring-black">
                   <AppleIcon className="h-5 w-5" />
                   <div className="flex flex-col leading-none">
                     <span className="text-[10px]">Download on the</span>
@@ -84,33 +87,30 @@ const GetSmashRemitAppSection = ({ onClose }: { onClose: () => void }) => {
           </div>
 
           {/* Right Column (Phone Images) */}
-          <div className="mt-29 flex w-full items-end md:w-[30%]">
+
+          <div className="relative hidden h-[350px] w-full items-end justify-center lg:flex lg:h-[400px] lg:w-1/2">
             <motion.div
-              className="flex justify-center"
+              className="relative h-full w-full"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.8 }}
             >
-              <div className="relative flex items-center justify-center">
+              {/* Phone 2 (Card)  */}
+              <div className="absolute right-0 bottom-0 z-10 h-[280px] w-[280px] sm:h-[350px] sm:w-[350px] lg:h-[400px] lg:w-[400px] xl:-mt-[400px]">
                 <Image
                   src="/cardPhone.png"
                   alt="SmashRemit App Phone 2"
-                  width={280}
-                  height={400}
-                  className="rounded-lg object-cover"
-                  style={{ position: "relative", zIndex: 1 }}
+                  fill
+                  className="object-contain"
                 />
+              </div>
+              {/* Phone 1 (Wallet) */}
+              <div className="absolute bottom-0 -left-[15%] z-0 h-[280px] w-[280px] sm:h-[350px] sm:w-[350px] lg:h-[400px] lg:w-[400px] xl:-mt-[400px]">
                 <Image
                   src="/walletPhone.png"
                   alt="SmashRemit App Phone 1"
-                  width={280}
-                  height={400}
-                  className="-ml-14 rounded-lg object-cover"
-                  style={{
-                    transform: "translateX(-150px)",
-                    position: "absolute",
-                    zIndex: 0,
-                  }}
+                  fill
+                  className="object-contain"
                 />
               </div>
             </motion.div>
